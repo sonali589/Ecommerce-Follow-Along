@@ -161,3 +161,11 @@ In this milestone, we created a "My Products" page that displays all the product
 - Added an endpoint to fetch products by user email.
 - Created a function to retrieve and display products dynamically.
 - Utilized the Card component to present each product.
+
+## Milestone 13: Edit Product Functionality
+In this milestone, we created endpoint for editing/Updating a Product using existing data in frontend.
+
+- Writen an endpoint to update existing data in MongoDB.
+- Autofill forms with previous data for editing.
+
+## Milestone 14: 
