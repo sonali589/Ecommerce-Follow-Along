@@ -41,6 +41,7 @@ const Product = () => {
                     {products.map((product) => (
                         <Card
                             key={product._id}
+                            id={product._id}
                             name={product.name}
                             price={product.price}
                             image={`http://localhost:8000/uploads/${product.images?.[0]}`}

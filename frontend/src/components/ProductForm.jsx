@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
 
 const ProductForm = () => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const ProductForm = () => {
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
         const imagePreviews = files.map((file) => URL.createObjectURL(file));
-        
+
         setProductData({
             ...productData,
             images: files,
@@ -28,30 +29,30 @@ const ProductForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         const formData = new FormData();
         formData.append("name", productData.name);
         formData.append("price", productData.price);
         productData.images.forEach((image) => formData.append("images", image));
-    
+
         try {
-            const token = localStorage.getItem("token");  
-    
+            const token = localStorage.getItem("token");
+
             if (!token) {
                 console.error("❌ No token found in localStorage!");
                 alert("You must be logged in to add a product.");
                 return;
             }
-    
-            console.log("🔹 Sending token:", token);  // 🛠 Debugging line
-    
+
+            console.log("🔹 Sending token:", token);
+
             await axios.post("http://localhost:8000/products/add", formData, {
-                headers: { 
+                headers: {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${token}`,
                 },
             });
-    
+
             alert("✅ Product added successfully!");
             navigate("/");
         } catch (error) {
@@ -59,56 +60,65 @@ const ProductForm = () => {
             alert("Failed to add product. Make sure you're logged in!");
         }
     };
-    
+
     return (
-        <div className="flex items-center justify-center h-screen w-screen">
-            <div className="p-6 max-w-lg mx-auto bg-gray-200 shadow-xl rounded-lg">
-                <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Add New Product</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <label className="block text-gray-700 font-semibold">Product Name:</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={productData.name}
-                        onChange={handleInputChange}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
-                        required
-                    />
-
-                    <label className="block text-gray-700 font-semibold">Price ($):</label>
-                    <input
-                        type="number"
-                        name="price"
-                        value={productData.price}
-                        onChange={handleInputChange}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400"
-                        required
-                    />
-
-                    {productData.imagePreviews.length > 0 && (
-                        <div className="mt-4 grid grid-cols-3 gap-2">
-                            {productData.imagePreviews.map((src, index) => (
-                                <img key={index} src={src} alt={`preview-${index}`} className="w-full h-24 object-cover rounded-lg border border-gray-300" />
-                            ))}
+        <div className="bg-gray-900 text-white min-h-screen">
+            <Navbar />
+            <div className="flex items-center justify-center mt-16 p-4">
+                <div className="p-6 max-w-lg w-full bg-gray-800 rounded-lg shadow-xl">
+                    <h2 className="text-3xl font-semibold mb-6 text-center">Add New Product</h2>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Product Name:</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={productData.name}
+                                onChange={handleInputChange}
+                                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required
+                            />
                         </div>
-                    )}
 
-                    <label className="block text-gray-700 font-semibold">Upload Images:</label>
-                    <input
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-400"
-                    />
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Price (₹):</label>
+                            <input
+                                type="number"
+                                name="price"
+                                value={productData.price}
+                                onChange={handleInputChange}
+                                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required
+                            />
+                        </div>
 
-                    <button
-                        type="submit"
-                        className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white px-5 py-3 rounded-lg shadow-md font-semibold text-lg transition duration-300 hover:from-blue-600 hover:to-purple-600"
-                    >
-                        Submit
-                    </button>
-                </form>
+                        {productData.imagePreviews.length > 0 && (
+                            <div className="mt-4 grid grid-cols-3 gap-2">
+                                {productData.imagePreviews.map((src, index) => (
+                                    <img key={index} src={src} alt={`preview-${index}`} className="w-full h-24 object-cover rounded-lg border border-gray-600" />
+                                ))}
+                            </div>
+                        )}
+
+                        <div>
+                            <label className="block text-sm font-medium mb-1">Upload Images:</label>
+                            <input
+                                type="file"
+                                multiple
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                className="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg shadow-md font-semibold text-lg transition duration-300 hover:from-blue-700 hover:to-purple-700"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

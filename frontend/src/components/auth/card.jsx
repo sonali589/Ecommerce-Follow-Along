@@ -1,12 +1,21 @@
-const Card = ({ name, price, image, onAddToCart, onBuyNow, onEdit, onDelete }) => {
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const Card = ({ name, price, image, onAddToCart, onBuyNow, onEdit, onDelete, id }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/products/${id}`);
+  };
+
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl border border-gray-200 w-full max-w-sm">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl border border-gray-200 w-full max-w-sm cursor-pointer" onClick={handleCardClick}>
       {/* Product Image */}
       <div className="relative w-full h-64 flex justify-center items-center bg-gray-100">
         <img src={image} alt={name} className="object-contain h-full w-full p-4" />
-        
+
         {/* Edit Button (Top Right) */}
-        <button onClick={onEdit} className="absolute top-3 right-3 bg-gray-200 p-2 rounded-full hover:invert cursor-pointer transition-all">
+        <button onClick={(e) => { e.stopPropagation(); onEdit(); }} className="absolute top-3 right-3 bg-gray-200 p-2 rounded-full hover:invert cursor-pointer transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24">
             <path d="M14.5 5.5L3 17 3 21 7 21 18.5 9.5zM21.2 2.8c-1.1-1.1-2.9-1.1-4 0L16 4l4 4 1.2-1.2C22.3 5.7 22.3 3.9 21.2 2.8z"></path>
           </svg>
@@ -16,12 +25,12 @@ const Card = ({ name, price, image, onAddToCart, onBuyNow, onEdit, onDelete }) =
       {/* Product Details */}
       <div className="text-center p-4">
         <h3 className="text-lg font-semibold text-gray-900">{name}</h3>
-        <p className="text-lg text-green-600 font-bold mt-1">${price}</p>
+        <p className="text-lg text-green-600 font-bold mt-1">₹{price}</p>
 
         {/* Action Buttons */}
         <div className="flex justify-center items-center gap-4 mt-4 pb-4">
           {/* Add to Cart */}
-          <button onClick={onAddToCart} className="flex items-center justify-center">
+          <button onClick={(e) => { e.stopPropagation(); onAddToCart(); }} className="flex items-center justify-center">
             <img
               src="https://th.bing.com/th/id/OIP.KUbJUQENTwusA_vixyzjeQHaHa?rs=1&pid=ImgDetMain"
               alt="Cart"
@@ -33,7 +42,7 @@ const Card = ({ name, price, image, onAddToCart, onBuyNow, onEdit, onDelete }) =
           <div className="flex gap-3">
             {/* Buy Now */}
             <button
-              onClick={onBuyNow}
+              onClick={(e) => { e.stopPropagation(); onBuyNow(); }}
               className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition-all focus:outline-none focus:ring-2 focus:ring-green-400 shadow-md"
             >
               Buy Now
@@ -41,7 +50,7 @@ const Card = ({ name, price, image, onAddToCart, onBuyNow, onEdit, onDelete }) =
 
             {/* Delete Button */}
             <button
-              onClick={onDelete}
+              onClick={(e) => { e.stopPropagation(); onDelete(); }}
               className="bg-red-500  text-white p-2 relative left-7 rounded-lg hover:bg-red-600 transition-all focus:outline-none focus:ring-2 focus:ring-red-400 shadow-md"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24">

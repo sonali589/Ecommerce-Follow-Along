@@ -169,3 +169,20 @@ In this milestone, we created endpoint for editing/Updating a Product using exis
 - Autofill forms with previous data for editing.
 
 ## Milestone 14: 
+Delete Product from Database in Frontend
+In this milestone, we created endpoint for deleting a product using existing data in frontend card component
+
+- Written an endpoint to delete request existing data frm frontend to MongoDB
+
+## Milestone 15: Navbar Component for Every Screen Page in Frontend
+In this milestone, we created an Navbar Component for every screen with page like Home, My Products, Add product, cart,etc.,
+
+- Added Navbar for all pages includes HomePage, Products page, login/Signup page, and Product form
+- Made full responsive for both desktop and mobile view and styled using tailwind CSS
+
+## Milestone 16: Product Info Page
+In this milestone, we created a product information page that displays detailed product data and includes features like quantity selection, add-to-cart, buy-now, and a like button.
+
+- Implemented a product info page that fetches and displays detailed product information based on the product ID from the URL.
+- Applied a professional dark blue theme using Tailwind CSS.
+- Implemented event handlers for quantity changes, add-to-cart, buy-now, and like actions.
