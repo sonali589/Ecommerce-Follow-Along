@@ -63,7 +63,7 @@ function ProductInfoPage() {
           <div className="md:w-1/2 relative">
             {product.images && product.images.length > 0 && (
               <img
-                src={`http://localhost:8000/${product.images[0]}`}
+                src={`http://localhost:8000/uploads/${product.images[0]}`}
                 alt={product.name}
                 className="w-full rounded-lg shadow-md object-cover aspect-square"
               />

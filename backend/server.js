@@ -46,9 +46,11 @@ app.use("/uploads", express.static("uploads"));
 // Import and use routes
 const userRoutes = require("./controller/userRouter");
 const productRoutes = require("./controller/productRouter");
+const cartRoutes = require("./controller/cartRouter");
 
 app.use("/user", userRoutes);
 app.use("/products", productRoutes);
+app.use("/cart", cartRoutes);
 
 // Error Handling Middleware
 app.use(ErrorHandler);

@@ -186,3 +186,14 @@ In this milestone, we created a product information page that displays detailed 
 - Implemented a product info page that fetches and displays detailed product information based on the product ID from the URL.
 - Applied a professional dark blue theme using Tailwind CSS.
 - Implemented event handlers for quantity changes, add-to-cart, buy-now, and like actions.
+
+## Milestone 17: Created an Endpoint for Saving Cart products in Database
+In this milestone, we created an endpoint for saving the Cart Product Details in User Schema and Store Cart details in MongoDB Database.
+
+- Implemented POST Method to handle endpoint to store cart products in Database.
+## Milestone 18:
+In this milestone, we created an endpoint for fetching all the products inside a user's cart from the MongoDB database based on the user's email. This allows the cart page to display the products that the user has added to their cart.
+
+- Implemented GET Method to handle the endpoint for fetching cart products from the database.
+- Validated User based on the email provided in the request and retrieved their cart items.
+-Displayed Cart Products with details such as quantity, price, product name, and image on the cart page.

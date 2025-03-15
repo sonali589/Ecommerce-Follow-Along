@@ -31,6 +31,9 @@ app.use("/user", user);
 const productRoutes = require("./controller/productRouter");
 app.use("/products", productRoutes);
 
+const cartRoutes = require("./controller/cartRouter");
+app.use("/cart", cartRoutes);
+
 // Error Handling Middleware
 app.use(ErrorHandler);
 

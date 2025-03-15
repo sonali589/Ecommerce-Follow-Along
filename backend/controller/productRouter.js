@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Product = require("../model/Product");
+const Product = require("../model/product");
 const authenticate = require("../middleware/auth");
 const upload = require("../multer");
 
@@ -58,24 +58,24 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
     const updatedData = req.body;
-  
+
     try {
-      const result = await Product.findByIdAndUpdate(id, updatedData, { new: true });
-      res.json(result);
+        const result = await Product.findByIdAndUpdate(id, updatedData, { new: true });
+        res.json(result);
     } catch (error) {
-      res.status(500).json({ error: "Error updating product" });
+        res.status(500).json({ error: "Error updating product" });
     }
-  });
-  
-  router.delete("/:id", async (req, res) => {
+});
+
+router.delete("/:id", async (req, res) => {
     try {
-      const { id } = req.params;
-      const result = await Product.findByIdAndDelete(id);
-      if (!result) return res.status(404).json({ message: "Product not found" });
-      res.json({ message: "Product deleted successfully" });
+        const { id } = req.params;
+        const result = await Product.findByIdAndDelete(id);
+        if (!result) return res.status(404).json({ message: "Product not found" });
+        res.json({ message: "Product deleted successfully" });
     } catch (error) {
-      res.status(500).json({ message: "Error deleting product", error });
+        res.status(500).json({ message: "Error deleting product", error });
     }
-  });
+});
 
 module.exports = router;
