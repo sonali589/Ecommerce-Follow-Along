@@ -197,3 +197,15 @@ In this milestone, we created an endpoint for fetching all the products inside a
 - Implemented GET Method to handle the endpoint for fetching cart products from the database.
 - Validated User based on the email provided in the request and retrieved their cart items.
 -Displayed Cart Products with details such as quantity, price, product name, and image on the cart page.
+
+## Milestone 19: Cart Page Implementaion
+In this milestone, we created a Frontend page UI for cart and wrttien endpoint to increase and decrease the quantity of product inside cart.
+
+- Created an Cart page that displays products inside cart using endpoint.
+- for each product added an option to increase and decrease quantity using + and - buttons.
+
+## Milestone 20: Profile Page Implementation
+In this milestone, we created a profile page for displaying User Profil and written endpoint to receive user data and send all userdata using mail.
+
+- Created an Profile Page that will display all user data ( Profile Photo, Name, mail and addresses ).
+- Created an Backend endpoint which send all user data using mail.

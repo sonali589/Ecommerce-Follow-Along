@@ -9,6 +9,7 @@ function ProductInfoPage() {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [liked, setLiked] = useState(false);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:8000/products/${id}`)
@@ -20,21 +21,29 @@ function ProductInfoPage() {
       });
   }, [id]);
 
-  const handleQuantityChange = (e) => {
-    setQuantity(parseInt(e.target.value, 10));
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCart(storedCart);
+  }, []);
+
+  const handleQuantityChange = (newQuantity) => {
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+    }
   };
 
   const handleAddToCart = () => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    const existingItem = cart.find(item => item.id === id);
+    const updatedCart = [...cart];
+    const existingItem = updatedCart.find(item => item.id === id);
 
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      cart.push({ id, quantity, name: product.name, price: product.price });
+      updatedCart.push({ id, quantity, name: product.name, price: product.price });
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
     alert('Added to cart!');
   };
 
@@ -88,14 +97,16 @@ function ProductInfoPage() {
               <label htmlFor="quantity" className="mr-4 text-lg">
                 Quantity:
               </label>
+              <button onClick={() => handleQuantityChange(quantity - 1)} className="bg-gray-700 text-white px-3 py-1 rounded-lg">-</button>
               <input
                 type="number"
                 id="quantity"
                 value={quantity}
-                onChange={handleQuantityChange}
+                onChange={(e) => handleQuantityChange(parseInt(e.target.value, 10))}
                 min="1"
-                className="border rounded p-3 w-24 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border rounded p-3 w-24 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mx-2 text-center"
               />
+              <button onClick={() => handleQuantityChange(quantity + 1)} className="bg-gray-700 text-white px-3 py-1 rounded-lg">+</button>
             </div>
 
             <div className="flex gap-4">

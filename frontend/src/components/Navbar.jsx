@@ -33,14 +33,16 @@ function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const userInitials = user ? user.name.split(" ")[0][0] + user.name.split(" ")[1]?.[0] : "";
+
   return (
-    <nav className="bg-[#12192c] text-white fixed top-0 left-0 right-0 z-1 w-full shadow-lg">
+    <nav className="bg-[#12192c] text-white fixed top-0 left-0 right-0 z-10 w-full shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Link to="/" className="text-2xl font-semibold tracking-wide">
-                Digital Store
+              <Link to="/" className="text-2xl font-semibold tracking-wide text-white">
+                DiGital Store
               </Link>
             </div>
           </div>
@@ -61,12 +63,24 @@ function Navbar() {
                     Cart
                   </Link>
 
-                  <span className="text-lg font-medium mr-4">Hi❕{user.name}</span>
+                  <div className="relative group"> {/* Hover effect on profile avatar */}
+                    <div
+                      onClick={() => navigate("/profile")}
+                      className="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center cursor-pointer hover:bg-indigo-700"
+                    >
+                      {userInitials}
+                    </div>
+                    {/* Name below the avatar */}
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-gray-800 text-white px-4 py-2 rounded-md text-sm z-10">
+                      {user.name}
+                    </div>
+                  </div>
+
                   <button
                     onClick={handleLogout}
                     className="bg-red-600 text-white px-3 py-2 rounded-lg shadow-md transition duration-300 hover:bg-red-700 flex items-center"
                   >
-                    <FiLogOut className="mr-1" /> {/* Logout icon */}
+                    <FiLogOut className="mr-1" />
                     Logout
                   </button>
                 </>
@@ -87,6 +101,8 @@ function Navbar() {
                 </>
               )}
             </div>
+
+            {/* Mobile Menu */}
             <div className="-mr-2 flex md:hidden">
               <button
                 onClick={toggleMobileMenu}
@@ -124,7 +140,6 @@ function Navbar() {
 
       <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {/* Mobile Menu Content */}
           <Link to="/" className="hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
             Home
           </Link>
