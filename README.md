@@ -209,3 +209,15 @@ In this milestone, we created a profile page for displaying User Profil and writ
 
 - Created an Profile Page that will display all user data ( Profile Photo, Name, mail and addresses ).
 - Created an Backend endpoint which send all user data using mail.
+
+## Milestone 21: Address Input Form Implementation
+In this milestone, we created a Address input frontend page form which takes address from input fields and storing input state.
+
+- Created an state that will store input address
+- Added Navigation in Profile Page for Address Form Page.
+
+## Milestone 22: Created Backend endpoint for address Storing
+In this milestone, we created an backend endpoint which will save address inside user profile in database.
+
+- Added an Endpoint to receive the address via input filed in frontend and store it on databse using endpoint backend
+- this addresses saves in user collection using an array.
