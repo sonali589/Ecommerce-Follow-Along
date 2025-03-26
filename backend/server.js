@@ -47,10 +47,12 @@ app.use("/uploads", express.static("uploads"));
 const userRoutes = require("./controller/userRouter");
 const productRoutes = require("./controller/productRouter");
 const cartRoutes = require("./controller/cartRouter");
+const orderRoutes = require("./controller/orderRouter");
 
 app.use("/user", userRoutes);
 app.use("/products", productRoutes);
 app.use("/cart", cartRoutes);
+app.use("/order", orderRoutes);
 
 // Error Handling Middleware
 app.use(ErrorHandler);

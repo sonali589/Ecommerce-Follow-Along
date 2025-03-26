@@ -52,20 +52,21 @@ const Profile = () => {
 
   const handleSaveAddress = async () => {
     try {
-        const response = await axios.put('http://localhost:8000/user/update-profile', {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            avatar: formData.avatar,
-            addresses: formData.addresses,  // Send updated addresses
-        });
-        setUser(response.data);
-        localStorage.setItem('user', JSON.stringify(response.data));
-        alert('Addresses successfully updated');
+      const response = await axios.put('http://localhost:8000/user/update-profile', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        avatar: formData.avatar,
+        addresses: formData.addresses, // Send updated addresses
+      });
+      setUser(response.data); // Store the updated user data
+      localStorage.setItem('user', JSON.stringify(response.data)); // Update localStorage with the new data
+      alert('Addresses successfully updated');
     } catch (error) {
-        console.error('Error updating addresses:', error);
+      console.error('Error updating addresses:', error);
     }
-};
+  };
+  
 
 
   const handleAvatarChange = async (e) => {
@@ -89,13 +90,14 @@ const Profile = () => {
     try {
       const response = await axios.put('http://localhost:8000/user/update-profile', formData);
       setUser(response.data);
-      setIsEditing(false);
-      localStorage.setItem('user', JSON.stringify(response.data));
+      setIsEditing(false); // Exit editing mode
+      localStorage.setItem('user', JSON.stringify(response.data)); // Update localStorage
       alert('Profile successfully updated');
     } catch (error) {
       console.error('Error updating profile:', error);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center py-12 px-4">
@@ -217,7 +219,7 @@ const Profile = () => {
       )}
 
       <footer className="w-full bg-gray-800 text-center text-gray-400 py-4 mt-8">
-        <p>Made by Sonali</p>
+        <p>Made by sonali</p>
       </footer>
     </div>
   );

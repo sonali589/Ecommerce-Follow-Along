@@ -17,13 +17,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-
 // Signup Route
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
-    console.log("Received signup request:", req.body);
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
@@ -34,16 +31,13 @@ router.post("/signup", async (req, res) => {
       return res.status(400).json({ message: "Email already exists" });
     }
 
-    // ❌ Do NOT hash the password here. Let Mongoose handle it.
     const newUser = new User({
       name,
       email,
-      password  // ✅ Directly assign the password, Mongoose will hash it
+      password
     });
 
     await newUser.save();
-    console.log("✅ User saved successfully:", newUser);
-
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     console.error("Signup error:", error);
@@ -54,28 +48,20 @@ router.post("/signup", async (req, res) => {
 // Login Route
 router.post('/login', async (req, res) => {
   try {
-    console.log("Login request received:", req.body);
-
     const { email, password } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // ✅ Select password explicitly since it's set to "select: false"
     const user = await User.findOne({ email }).select("+password");
-
-    console.log("Found user in DB:", user);  // ✅ This should now include password
-    console.log("Stored password in DB:", user?.password);  // ✅ Check if password is present
 
     if (!user) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // ✅ Use comparePassword method to verify password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      console.log("Password does not match");
       return res.status(403).json({ message: "Invalid credentials" });
     }
 
@@ -84,13 +70,11 @@ router.post('/login', async (req, res) => {
       process.env.SECRET_KEY || "fallback_secret"
     );
 
-    console.log("Generated Token:", token);
-
     res.status(200).json({
       message: "Login successful",
       token,
-      user: { userId: user._id, name: user.name }
-    });
+      user: { userId: user._id, name: user.name, email: user.email }
+  });
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ message: "Server Error" });
@@ -110,6 +94,24 @@ router.get('/users', async (req, res) => {
   }
 });
 
+// Fetch user addresses
+router.get('/addresses', async (req, res) => {
+  const { email } = req.query;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json({ addresses: user.addresses });
+  } catch (error) {
+    console.error('Error fetching addresses:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Send user data via email
 router.post('/send-user-data', async (req, res) => {
   const { email } = req.body;
 
@@ -138,9 +140,7 @@ router.post('/send-user-data', async (req, res) => {
   }
 });
 
-
-
-// Add this route to the existing userRouter
+// Update user profile
 router.put('/update-profile', async (req, res) => {
   const { name, email, phone, avatar, addresses } = req.body;
 
@@ -169,6 +169,5 @@ router.post('/upload-avatar', upload.single('avatar'), (req, res) => {
   }
   res.status(200).json({ url: `/uploads/${req.file.filename}` });
 });
-
 
 module.exports = router;

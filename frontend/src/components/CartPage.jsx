@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 
 const Cart = () => {
     const [cart, setCart] = useState([]);
     const [userId, setUserId] = useState(null);
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
@@ -57,6 +59,10 @@ const Cart = () => {
         alert("Proceeding to checkout!");
     };
 
+    const handlePlaceOrder = () => {
+        navigate("/select-address"); // Navigate to the Select Address page
+    };
+
     return (
         <div className="bg-gray-900 text-white min-h-screen p-6">
             <h2 className="text-3xl font-bold text-center my-6 text-gray-100">Shopping Cart</h2>
@@ -93,6 +99,12 @@ const Cart = () => {
                             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             Checkout
+                        </button>
+                        <button
+                            onClick={handlePlaceOrder} // Add the Place Order button
+                            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 ml-4"
+                        >
+                            Place Order
                         </button>
                     </div>
                 </div>
