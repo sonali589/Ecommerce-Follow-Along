@@ -235,3 +235,16 @@ In this milestone, we created an Order Confirmation Page in frontend and Display
 - Added Order COnfirmation Page in frontend
 - Displaying products in selectAddress
 - Redirecting After Select Adress to Order Confirmation page.
+
+## Milestone 25: Created backend endpoint for placing order
+In this milestone, we created an endpoint for placing the order for receiving products, user, address details.
+
+- Created an endpoint for receiving products, user, address details
+- Retirving _id of the user using mail
+product order will be diffrent with same address
+
+## Milestone 26: Created backend endpoint for Getting Orders
+In this milestone, we created an endpoint for getting all orders of the user by email
+
+- Created an endpoint for getting order details by email
+- Using Mail instead of _id for easy endpoint recognization.
