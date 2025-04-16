@@ -9,7 +9,6 @@ const OrderConfirmation = () => {
     const location = useLocation();
 
     useEffect(() => {
-        // Retrieve cart and selected address from location state
         if (location.state) {
             const { cartItems, address } = location.state;
             setCart(cartItems || []);

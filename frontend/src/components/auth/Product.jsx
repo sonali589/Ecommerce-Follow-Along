@@ -62,6 +62,30 @@ const Product = () => {
         }
     };
 
+    const handleEditProduct = (productId) => {
+        console.log(`Editing product with ID: ${productId}`);
+        // Navigate to the edit product page
+        navigate(`/edit-product/${productId}`);
+    };
+
+    const handleDeleteProduct = async (productId) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this product?");
+        if (!confirmDelete) return;
+
+        try {
+            console.log(`Deleting product with ID: ${productId}`);
+            const response = await axios.delete(`http://localhost:8000/products/${productId}`);
+            console.log("✅ Delete response:", response.data);
+
+            // Remove the deleted product from the state
+            setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
+            alert("Product deleted successfully!");
+        } catch (error) {
+            console.error("🚨 Error deleting product:", error.response?.data || error.message);
+            alert(`Failed to delete product. ${error.response?.data?.message || ""}`);
+        }
+    };
+
     return (
         <div className="flex justify-center items-center w-full">
             <div className="min-h-screen w-full bg-[#13234f] flex flex-col items-center p-5">
@@ -77,6 +101,8 @@ const Product = () => {
                             price={product.price}
                             image={`http://localhost:8000/uploads/${product.images?.[0]}`}
                             onAddToCart={() => handleAddToCart(product)}
+                            onEdit={() => handleEditProduct(product._id)}
+                            onDelete={() => handleDeleteProduct(product._id)}
                         />
                     ))}
                 </div>

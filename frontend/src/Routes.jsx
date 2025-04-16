@@ -8,4 +8,5 @@ import CartPage from './components/CartPage';
 import Profile from './components/profilePage';
 import SelectAddress from './components/SelectAddress';
 import OrderConfirmation from './Pages/OrderConfirmation';
-export {LoginPage,SignupPage, Homepage, ProductForm, EditProduct, ProductInfoPage, CartPage, Profile, SelectAddress, OrderConfirmation};
+import MyOrders from './Pages/MyOrders'; 
+export {LoginPage,SignupPage, Homepage, ProductForm, EditProduct, ProductInfoPage, CartPage, Profile, SelectAddress, OrderConfirmation,MyOrders};

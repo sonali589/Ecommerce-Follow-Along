@@ -248,3 +248,34 @@ In this milestone, we created an endpoint for getting all orders of the user by 
 
 - Created an endpoint for getting order details by email
 - Using Mail instead of _id for easy endpoint recognization.
+
+## Milestone 27: Created Frontend myOders Page for Displaying all Ordered Products.
+In this milestone, we created an Frontend page for oders displaying
+
+Using mail orders get fetching from backend
+
+## Milestone 28: Created a cancel button in myOrders Page for cacelling order functionality
+In this milestone, we created an backend endpoint for cancel order and cancel button in myOrders page.
+
+- For every order cancel button
+- using order-id endpoint fetching from backend
+
+## Milestone 29: Implementation PayPal Payment Gateway in mySite
+In this milestone, i understood how payment gateway works and how to use paypal payment api and integrate payments in site.
+
+- Implemented Types of orders like COD, Online Payment and EMI Options.
+- Creating radio buttons to select order Payment Options for UI
+- Understood Paypal Developers API and Sandbox Integration.
+
+## Milestone 30:
+In this milestone, I successfully integrated an online payment gateway into my application using the PayPal API. This milestone builds upon the work completed in Milestone 29, where I created a PayPal account and obtained the user ID.
+
+- Learned how to use PayPal's API to handle online payments.
+- Integrated PayPal's payment system into my application.
+- Integrated the PayPal Buttons component to allow users to select their preferred payment method.
+
+## Milestone 31:
+In this milestone, I learned how to implement global state management using Redux in my application. This milestone focuses on using Redux to handle global state, particularly for storing and managing user information (email) across the entire app.
+
+- Learned how to use Redux for global state management.
+- Implemented a Redux store to handle and store global states, particularly user email information.

@@ -42,7 +42,7 @@ function Navbar() {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link to="/" className="text-2xl font-semibold tracking-wide text-white">
-                DiGital Store
+                Digital Store
               </Link>
             </div>
           </div>
@@ -61,6 +61,9 @@ function Navbar() {
                   </Link>
                   <Link to="/cart" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                     Cart
+                  </Link>
+                  <Link to="/my-orders" className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                  My Orders
                   </Link>
 
                   <div className="relative group"> {/* Hover effect on profile avatar */}
