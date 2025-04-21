@@ -279,3 +279,17 @@ In this milestone, I learned how to implement global state management using Redu
 
 - Learned how to use Redux for global state management.
 - Implemented a Redux store to handle and store global states, particularly user email information.
+
+## Milestone 32:
+In this milestone, we focused on implementing Redux for global state management — specifically to store and access the user’s email across all pages in our application.
+
+- Implemented Redux to manage global state in the project.
+- Stored the user’s mail in Redux state during login.
+- Accessed the stored mail in other pages using useSelector.
+
+## Milestone 33:
+In this milestone, I learned how to create a JWT token for authentication and securely store it in the browser using cookies.
+
+- Created a JWT token using the jsonwebtoken package.
+- Stored the generated token in a cookie to maintain user sessions.
+- Configured cookie expiration using maxAge.
