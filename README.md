@@ -293,3 +293,18 @@ In this milestone, I learned how to create a JWT token for authentication and se
 - Created a JWT token using the jsonwebtoken package.
 - Stored the generated token in a cookie to maintain user sessions.
 - Configured cookie expiration using maxAge.
+
+## Milestone 34:
+In this milestone, I learned how to extract and validate the JWT token stored in cookies to protect routes and ensure only authenticated users can access them.
+
+- Extracted the JWT token from the browser cookies on the frontend side.
+- Sent the token to the backend automatically via cookies.
+- Applied the middleware to protect backend routes.
+- Redirected unauthenticated users to the login page.
+
+## Milestone 35:
+In this milestone, I learned how to deploy a full-stack MERN application, including both the frontend and backend, to make the project live and accessible on the internet.
+
+- Deployed the project using a deployment platform ( Render for backend and netlify for frontend).
+- Obtained the live backend API URL and replaced all instances of localhost in the frontend API calls.
+- Verified the live site is fully functional and publicly accessible.
